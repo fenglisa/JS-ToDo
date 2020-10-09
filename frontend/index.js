@@ -2,6 +2,14 @@ const renderTask = (t, u) => {
     const li = document.createElement('li');
     li.innerText =  t.attributes.title + ` -- ${u.attributes.name}`;
     document.body.appendChild(li);
+    const button = document.createElement('button');
+    button.innerText = "X";
+    button.addEventListener('click', (e) => {
+      fetch(`http://localhost:3000/tasks/${t.id}`, {
+        method: "DELETE"
+      }).then(li.remove())
+    });
+    li.appendChild(button);
 }
 
 fetch("http://localhost:3000/tasks").then(r => r.json()).then(info => {
