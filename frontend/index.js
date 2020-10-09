@@ -1,13 +1,14 @@
-const renderTask = (t) => {
+const renderTask = (t, u) => {
     const li = document.createElement('li');
-    li.innerText = t.title;
+    li.innerText =  t.attributes.title + ` -- ${u.attributes.name}`;
     document.body.appendChild(li);
 }
 
-fetch("http://localhost:3000/tasks").then(r => r.json()).then(data => {
-  console.log(data);
-  data.forEach((t) => {
-    renderTask(t);
+fetch("http://localhost:3000/tasks").then(r => r.json()).then(info => {
+  console.log(info);
+  info.data.forEach((t) => {
+    const u = info.included.find(u => u.id === t.relationships.user.data.id);
+    renderTask(t, u);
   })
 })
 
@@ -29,8 +30,9 @@ const createTask = (taskInfo) => {
       "Accept": "application/json"
     },
     body: JSON.stringify(taskInfo)
-  }).then(r => r.json()).then(data => {
-      renderTask(data);
+  }).then(r => r.json()).then(info => {
+      const u = info.included[0];
+      renderTask(info.data, u);
     })
 }
 

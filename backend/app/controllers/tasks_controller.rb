@@ -4,8 +4,10 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @tasks = Task.all
-
-    render json: @tasks
+    options = {
+      include: [:user]
+    }
+    render json: TaskSerializer.new(@tasks, options)
   end
 
   # GET /tasks/1
@@ -18,7 +20,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      render json: @task, status: :created, location: @task
+      options = {
+        include: [:user]
+      }
+      render json: TaskSerializer.new(@task, options)
     else
       render json: {errors: @task.errors.full_messages}, status: :unprocessable_entity
     end
