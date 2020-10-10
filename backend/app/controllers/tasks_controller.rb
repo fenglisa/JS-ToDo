@@ -25,7 +25,7 @@ class TasksController < ApplicationController
       }
       render json: TaskSerializer.new(@task, options)
     else
-      render json: {errors: @task.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors:  @task.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
