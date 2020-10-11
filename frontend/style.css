@@ -1,0 +1,11 @@
+.task-complete {
+  text-decoration: line-through;
+}
+
+.task {
+  cursor: pointer;
+}
+
+.task-overdue {
+  color: red;
+}

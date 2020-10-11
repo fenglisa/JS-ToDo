@@ -13,7 +13,7 @@
 // }
 
 fetch("http://localhost:3000/tasks").then(r => r.json()).then(info => {
-  console.log(info);
+  // console.log(info);
   info.data.forEach((t) => {
     const u = info.included.find(u => u.id === t.relationships.user.data.id);
     // renderTask(t, u);
@@ -69,8 +69,18 @@ class TaskToDo {
 
   display(u){
     const li = document.createElement('li');
+    li.classList.add("task");
+    if(this.due){
+      const today = new Date();
+      if(new Date(this.due) < today){
+        li.classList.add("task-overdue");
+      }
+    }
     li.innerText =  this.title + ` -- ${u.attributes.name}`;
     document.body.appendChild(li);
+    li.addEventListener('click', function(){
+      this.classList.toggle("task-complete");
+    });
     const button = document.createElement('button');
     button.innerText = "X";
     button.addEventListener('click', (e) => this.delete(e));
