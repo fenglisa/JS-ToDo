@@ -78,16 +78,19 @@ class TaskToDo {
   display(u){
     const tr = document.createElement('tr')
     tr.classList.add("task")
+    tr.innerHTML =  `<td>${this.title}</td><td>${u.attributes.name}</td>`;
     if(this.due){
+      tr.innerHTML += `<td>${this.due}</td>`
       const today = new Date();
       if(new Date(this.due) < today){
         tr.classList.add("task-overdue");
       }
+    }else{
+      tr.innerHTML += "<td>Daily</td>"
     }
     const button = document.createElement('button');
     button.innerText = "X";
     button.addEventListener('click', (e) => this.delete(e));
-    tr.innerHTML =  `<td>${this.title}</td><td>${u.attributes.name}</td><td>${this.due}</td>`;
     tr.appendChild(button);
     toDoTable.appendChild(tr);
     tr.addEventListener('click', function(){
