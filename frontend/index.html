@@ -6,24 +6,50 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <form id="newTaskForm">
-    <div>
-      <label for="title">Title: </label>
-      <input id="title">
-    </div><br>
-    <div>
-      <label for="users">Assign to: </label>
-      <select name="users" id="users" required>
-      </select>
-    </div><br>
-    <div>
-      <label for="due">Due Date: </label>
-      <input type="date" name="due" id="due" min=`${Date.today}`></input>
-    </div>
-    <br>
-    <input type="submit" value="Create New Task">
-  </form>
+  <table id="forms">
+    <tr>
+      <th>New Task Form</th>
+      <th>New User Form</th>
+    </tr>
+    <tr>
+      <td>
+        <form id="newTaskForm">
+          <div>
+            <label for="title">Title: </label>
+            <input id="title">
+          </div><br>
+          <div>
+            <label for="users">Assign to: </label>
+            <select name="users" id="users" required>
+            </select>
+          </div><br>
+          <div>
+            <label for="due">Due Date: </label>
+            <input type="date" name="due" id="due"></input>
+          </div>
+          <br>
+          <input type="submit" value="Create New Task">
+        </form>
+      </td>
+      <td>
+        <form id="newUserForm">
+          <div>
+            <label for="username">Name: </label>
+            <input id="username">
+          </div><br>
+          <input type="submit" value="Save New User">
+        </form>
+      </td>
+    </tr>
+  </table>
   <h1>To Do List</h1>
+  <table id="toDoTable">
+    <tr>
+      <th>Task</th>
+      <th>Assigned To</th>
+      <th>Due Date</th>
+    </tr>
+  </table>
     <script src="./index.js"></script>
   </div>
 
