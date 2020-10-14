@@ -178,8 +178,8 @@ class TaskMaster {
       },
       body: JSON.stringify({user: {name: this.name}})
     }).then(r => r.json()).then(info => {
-        if(info.errors){
-          alert(info.errors);
+        if(Array.isArray(info.name)){
+          alert("Name " + info.name[0]);
         }else{
           newUserForm.reset();
           this.id = info.id;
