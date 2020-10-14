@@ -75,10 +75,19 @@ class TaskToDo {
     this.user_id = user_id;
   }
 
+  titleize(){
+    const sentence = this.title.split(' ');
+    const newSentence = [];
+    for(const word of sentence){
+      newSentence.push(word.charAt(0).toUpperCase() + word.slice(1));
+    }
+    return newSentence.join(' ');
+  }
+
   display(u){
     const tr = document.createElement('tr')
     tr.classList.add("task")
-    tr.innerHTML =  `<td>${this.title}</td><td>${u.attributes.name}</td>`;
+    tr.innerHTML =  `<td>${this.titleize()}</td><td>${u.attributes.name}</td>`;
     if(this.due){
       tr.innerHTML += `<td>${this.due}</td>`
       const today = new Date();
