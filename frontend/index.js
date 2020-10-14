@@ -24,11 +24,8 @@ fetch("http://localhost:3000/tasks").then(r => r.json()).then(info => {
 
 fetch("http://localhost:3000/users").then(r => r.json()).then(data => {
   data.forEach((u) => {
-    const opt = document.createElement('option')
-    opt.setAttribute("value", `${u.id}`);
-    const t = document.createTextNode(`${u.name}`);
-    opt.appendChild(t);
-    users.appendChild(opt)
+    const user = new TaskMaster(u)
+    user.display();
   })
 })
 
@@ -139,7 +136,7 @@ class TaskToDo {
       body: JSON.stringify({task: {title: this.title, due: this.due, user_id: this.user_id}})
     }).then(r => r.json()).then(info => {
         if(info.errors){
-          console.log(info.errors);
+          alert(info.errors);
         }else{
           newTaskForm.reset();
           this.id = info.data.id;
@@ -164,6 +161,14 @@ class TaskMaster {
     this.id = id;
   }
 
+  display(){
+    const opt = document.createElement('option')
+    opt.setAttribute("value", `${this.id}`);
+    const t = document.createTextNode(`${this.name}`);
+    opt.appendChild(t);
+    users.appendChild(opt)
+  }
+
   persist(){
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -174,15 +179,11 @@ class TaskMaster {
       body: JSON.stringify({user: {name: this.name}})
     }).then(r => r.json()).then(info => {
         if(info.errors){
-          console.log(info.errors);
+          alert(info.errors);
         }else{
           newUserForm.reset();
           this.id = info.id;
-          const opt = document.createElement('option')
-          opt.setAttribute("value", `${this.id}`);
-          var t = document.createTextNode(`${this.name}`);
-          opt.appendChild(t);
-          users.appendChild(opt)
+          this.display();
         }
       })
   }
