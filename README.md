@@ -25,7 +25,7 @@ Puma starting in single mode...
 * Listening on tcp://[::1]:3000
 Use Ctrl-C to stop
 ```
-Then go back to the main directory (`JS ToDo`) and run `open frontend/index.html` in terminal.
+Then go into the `frontend` directory and copy the full path of `index.html`. Paste this into your browser (Google Chrome is preferred) and start task tracking!
 
 ## Contributing
 
