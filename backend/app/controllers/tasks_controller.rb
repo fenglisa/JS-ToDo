@@ -11,9 +11,9 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1
-  def show
-    render json: @task
-  end
+  # def show
+  #   render json: @task
+  # end
 
   # POST /tasks
   def create
@@ -30,13 +30,13 @@ class TasksController < ApplicationController
   end
 
   # PATCH/PUT /tasks/1
-  def update
-    if @task.update(task_params)
-      render json: @task
-    else
-      render json: @task.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @task.update(task_params)
+  #     render json: @task
+  #   else
+  #     render json: @task.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /tasks/1
   def destroy
@@ -44,11 +44,6 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def task_params
       params.require(:task).permit(:title, :complete, :due, :user_id)
