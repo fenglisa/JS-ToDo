@@ -13,7 +13,7 @@
 // }
 
 fetch("http://localhost:3000/tasks").then(r => r.json()).then(info => {
-  console.log(info);
+  // console.log(info);
   info.data.forEach((t) => {
     const u = info.included.find(u => u.id === t.relationships.user.data.id);
     // renderTask(t, u);
